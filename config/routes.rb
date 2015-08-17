@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  scope '/api', :defaults => {:format => :json} do
+  scope '/api', :defaults => {:format => :html} do
     scope '/v1' do
       scope '/group_events' do
         get '/' => 'group_events#index', as: 'group_events'
