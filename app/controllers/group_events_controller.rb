@@ -10,6 +10,7 @@ class GroupEventsController < ApplicationController
   # GET /group_events/1
   # GET /group_events/1.json
   def show
+    @group_event = GroupEvent.find params[:id]
   end
 
   # GET /group_events/new
@@ -19,6 +20,7 @@ class GroupEventsController < ApplicationController
 
   # GET /group_events/1/edit
   def edit
+    @group_event = GroupEvent.find params[:id]
   end
 
   # POST /group_events

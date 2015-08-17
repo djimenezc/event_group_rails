@@ -18,7 +18,7 @@ class GroupEventsControllerTest < ActionController::TestCase
 
   test 'should create group_event' do
     assert_difference('GroupEvent.count') do
-      post :create, group_event: {  }
+      post :create, group_event: {}
     end
 
     assert_redirected_to group_event_path(assigns(:group_event))
@@ -35,15 +35,35 @@ class GroupEventsControllerTest < ActionController::TestCase
   end
 
   test 'should update group_event' do
-    patch :update, id: @group_event, group_event: {  }
+    patch :update, id: @group_event, group_event: {}
     assert_redirected_to group_event_path(assigns(:group_event))
   end
 
   test 'should destroy group_event' do
-    assert_difference('GroupEvent.count', -1) do
+    # the destroy action should mark the record as deleted
+
+    assert !@group_event.deleted
+
+    assert_difference('GroupEvent.count', 0) do
       delete :destroy, id: @group_event
     end
 
+    assert @group_event.deleted, 'Record not deleted properly'
+
     assert_redirected_to group_events_path
   end
+
+  test 'should publish group_event' do
+
+    assert !@group_event.published
+
+    # lambda {
+      put :publish, name: @group_event.name
+    # }
+
+    assert @group_event.published, 'Record not published properly'
+
+    assert_redirected_to group_events_path
+  end
+
 end

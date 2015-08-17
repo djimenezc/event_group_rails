@@ -8,4 +8,8 @@ class GroupEvent < ActiveRecord::Base
     self.duration ||= 0
   end
 
+  def status
+    self.published ? 'Published' : 'Draft'
+  end
+
 end

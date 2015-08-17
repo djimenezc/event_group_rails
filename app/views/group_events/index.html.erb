@@ -5,6 +5,13 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Duration</th>
+      <th>Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +19,14 @@
   <tbody>
     <% @group_events.each do |group_event| %>
       <tr>
+        <td><%= group_event.name %></td>
+        <td><%= group_event.description %></td>
+        <td><%= group_event.location %></td>
+        <td><%= group_event.start_date %></td>
+        <td><%= group_event.end_date %></td>
+        <td><%= group_event.duration %> days</td>
+        <td><%= group_event.status %></td>
+
         <td><%= link_to 'Show', group_event %></td>
         <td><%= link_to 'Edit', edit_group_event_path(group_event) %></td>
         <td><%= link_to 'Destroy', group_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
