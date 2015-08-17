@@ -6,9 +6,13 @@ class GroupEventsControllerTest < ActionController::TestCase
   end
 
   test 'should get index' do
-    get :index
+    get :index, :format => :json
+
+    records = JSON.parse(response.body)
+
     assert_response :success
     assert_not_nil assigns(:group_events)
+    assert records.length == 2
   end
 
   test 'should get new' do
@@ -48,7 +52,8 @@ class GroupEventsControllerTest < ActionController::TestCase
       delete :delete, id: @group_event
     end
 
-    assert @group_event.deleted, 'Record not deleted properly'
+    group_event_updated = GroupEvent.where :name => 'MyString1'
+    assert group_event_updated[0].deleted, 'Record not deleted properly'
 
     assert_redirected_to group_events_path
   end
@@ -57,11 +62,10 @@ class GroupEventsControllerTest < ActionController::TestCase
 
     assert !@group_event.published
 
-    # lambda {
-      put :publish, name: @group_event.name
-    # }
+    get :publish, id: @group_event
 
-    assert @group_event.published, 'Record not published properly'
+    group_event_updated = GroupEvent.where :name => 'MyString1'
+    assert group_event_updated[0].published, 'Record not published properly'
 
     assert_redirected_to group_events_path
   end

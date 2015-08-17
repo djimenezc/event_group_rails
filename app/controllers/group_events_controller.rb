@@ -1,5 +1,5 @@
 class GroupEventsController < ApplicationController
-  before_action :set_group_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_group_event, only: [:show, :edit, :update, :delete, :publish]
 
   # GET /group_events
   # GET /group_events.json
@@ -69,10 +69,9 @@ class GroupEventsController < ApplicationController
     end
   end
 
-  # PUT /group_events/1
-  # PUT /group_events/1.json
+  # GET /group_events/1/publish
+  # GET /group_events/1/publish.json
   def publish
-    # @group_event.destroy
 
     @group_event.published = true
     @group_event.save!
@@ -91,6 +90,6 @@ class GroupEventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_event_params
-      params.require(:group_event).permit(:name, :location, :description, :start_date, :duration, :deleted)
+      params.require(:group_event).permit(:name, :location, :description, :start_date, :duration, :deleted, :published)
     end
 end

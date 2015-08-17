@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
 
-  scope '/api', :defaults => {:format => :html} do
+  scope '/api', :defaults => {:format => :json} do
     scope '/v1' do
       scope '/group_events' do
         get '/' => 'group_events#index', as: 'group_events'
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
           get '/' => 'group_events#show', as: 'group_event'
           put '/' => 'group_events#update'
           get '/edit' => 'group_events#edit', as: 'edit_group_event'
-          put '/publish' => 'group_events#publish', as: 'publish_group_event'
+          get '/publish' => 'group_events#publish', as: 'publish_group_event'
           delete '/' => 'group_events#delete'
         end
       end
