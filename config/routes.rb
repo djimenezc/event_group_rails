@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
 
 
-  # namespace :api, :defaults => {:format => :json} do
-  #   namespace :v1 do
-  #     resources :group_events
-  #   end
-  # end
-
   scope '/api', :defaults => {:format => :html} do
     scope '/v1' do
       scope '/group_events' do

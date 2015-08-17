@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-    <input name="_method" type="hidden" value="put" />
+    <input name="_method" type="hidden" value="<%= @group_event.persisted? ? 'put' :  'post' %>" />
 
     <p>
       <%= f.label :name %><br>
