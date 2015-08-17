@@ -4,7 +4,8 @@ class GroupEventsController < ApplicationController
   # GET /group_events
   # GET /group_events.json
   def index
-    @group_events = GroupEvent.all
+    # @group_events = GroupEvent.all
+    @group_events = GroupEvent.where :deleted => false
   end
 
   # GET /group_events/1
@@ -55,8 +56,9 @@ class GroupEventsController < ApplicationController
 
   # DELETE /group_events/1
   # DELETE /group_events/1.json
-  def destroy
+  def delete
     # @group_event.destroy
+    @group_event = GroupEvent.find params[:id]
 
     @group_event.deleted = true
     @group_event.save!
@@ -89,6 +91,6 @@ class GroupEventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_event_params
-      params.require(:group_event).permit(:name, :location, :description, :start_date, :duration)
+      params.require(:group_event).permit(:name, :location, :description, :start_date, :duration, :deleted)
     end
 end

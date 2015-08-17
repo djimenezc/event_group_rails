@@ -35,17 +35,17 @@ class GroupEventsControllerTest < ActionController::TestCase
   end
 
   test 'should update group_event' do
-    patch :update, id: @group_event, group_event: {}
+    patch :update, id: @group_event, group_event: {:name => 'nameChanged'}
     assert_redirected_to group_event_path(assigns(:group_event))
   end
 
-  test 'should destroy group_event' do
+  test 'should delete group_event, mark it as deleted' do
     # the destroy action should mark the record as deleted
 
     assert !@group_event.deleted
 
     assert_difference('GroupEvent.count', 0) do
-      delete :destroy, id: @group_event
+      delete :delete, id: @group_event
     end
 
     assert @group_event.deleted, 'Record not deleted properly'
