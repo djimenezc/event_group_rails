@@ -23,6 +23,14 @@ class GroupEventsControllerTest < ActionController::TestCase
 
   test 'should create group_event' do
     assert_difference('GroupEvent.count', 1) do
+      post :create, group_event: {:name => 'hello'}, :format => :json
+    end
+
+    assert response.status == 201
+  end
+
+  test 'should create group_event html' do
+    assert_difference('GroupEvent.count', 1) do
       post :create, group_event: {:name => 'hello'}
     end
 
@@ -30,7 +38,7 @@ class GroupEventsControllerTest < ActionController::TestCase
   end
 
   test 'should show group_event' do
-    get :show, id: @group_event
+    get :show, id: @group_event, :format => :json
     assert_response :success
   end
 
@@ -40,11 +48,22 @@ class GroupEventsControllerTest < ActionController::TestCase
   end
 
   test 'should update group_event' do
+    patch :update, id: @group_event, group_event: {:name => 'nameChanged'}, :format => :json
+
+    get :show, id: @group_event, :format => :json
+
+    records = JSON.parse(response.body)
+
+    assert records.size == 10
+    assert records['name'] == 'nameChanged'
+  end
+
+  test 'should update group_event html' do
     patch :update, id: @group_event, group_event: {:name => 'nameChanged'}
     assert_redirected_to group_event_path(assigns(:group_event))
   end
 
-  test 'should delete group_event, mark it as deleted' do
+  test 'should delete group_event, mark it as deleted html' do
     # the destroy action should mark the record as deleted
 
     assert !@group_event.deleted
@@ -57,6 +76,20 @@ class GroupEventsControllerTest < ActionController::TestCase
     assert group_event_updated[0].deleted, 'Record not deleted properly'
 
     assert_redirected_to group_events_path
+  end
+
+  test 'should delete group_event, mark it as deleted ' do
+    # the destroy action should mark the record as deleted
+
+    assert !@group_event.deleted
+
+    assert_difference('GroupEvent.count', 0) do
+      delete :delete, id: @group_event, :format => :json
+    end
+
+    group_event_updated = GroupEvent.where :name => 'MyString1'
+    assert group_event_updated[0].deleted, 'Record not deleted properly'
+
   end
 
   test 'should publish group_event' do

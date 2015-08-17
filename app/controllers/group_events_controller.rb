@@ -11,6 +11,11 @@ class GroupEventsController < ApplicationController
   # GET /group_events/1.json
   def show
     @group_event = GroupEvent.find params[:id]
+
+    respond_to do |format|
+      format.html { render :new }
+      format.json { render json: @group_event }
+    end
   end
 
   # GET /group_events/new
