@@ -20,12 +20,22 @@
 
     <p>
       <%= f.label :location %><br>
-      <%= f.text_field :location , :placeholder=> 'Enter location ...'%>
+      <%= f.text_field :location %>
     </p>
 
     <p>
       <%= f.label :description %><br>
       <%= f.text_area :description, :rows=> '10', :placeholder=> 'Enter description ...'%>
+    </p>
+
+    <p>
+      <%= f.label :start_date %><br>
+      <%= f.date_field :start_date, value: Date.today %>
+    </p>
+
+    <p>
+      <%= f.label :duration %><br>
+      <%= f.number_field :duration , value: 0 %>
     </p>
 
   <div class="actions">
