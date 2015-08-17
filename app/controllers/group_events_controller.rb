@@ -54,9 +54,27 @@ class GroupEventsController < ApplicationController
   # DELETE /group_events/1
   # DELETE /group_events/1.json
   def destroy
-    @group_event.destroy
+    # @group_event.destroy
+
+    @group_event.deleted = true
+    @group_event.save!
+
     respond_to do |format|
       format.html { redirect_to group_events_url, notice: 'Group event was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  # PUT /group_events/1
+  # PUT /group_events/1.json
+  def publish
+    # @group_event.destroy
+
+    @group_event.published = true
+    @group_event.save!
+
+    respond_to do |format|
+      format.html { redirect_to group_events_url, notice: 'Group event was successfully published.' }
       format.json { head :no_content }
     end
   end
