@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20150817094546) do
     t.date     "start_date"
     t.integer  "duration"
     t.date     "end_date"
-    t.boolean  "delete"
+    t.boolean  "deleted"
     t.boolean  "published"
     t.datetime "created_at"
     t.datetime "updated_at"

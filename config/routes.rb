@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   #   end
   # end
 
+  resources :group_events
+
   scope '/api' do
     scope '/v1' do
       scope '/group_events' do
