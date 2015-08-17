@@ -6,7 +6,6 @@ one:
   description: MyText1
   start_date: 2015-08-17
   duration: 1
-  end_date: 2015-08-17
   deleted: false
   published: false
 
@@ -16,16 +15,15 @@ two:
   description: MyText2
   start_date: 2015-08-17
   duration: 1
-  end_date: 2015-08-17
   deleted: false
   published: true
 three:
   name: MyString3
   location: MyString3
-#  description: MyText2
+  description: MyText2
   start_date: 2015-08-17
-  duration: 1
-  end_date: 2015-08-17
+  duration: 31
+#  end_date: 2015-08-17
   deleted: false
   published: false
 
@@ -35,7 +33,6 @@ four:
   description: MyText5
   start_date: 2015-08-17
   duration: 1
-  end_date: 2015-08-17
   deleted: true
   published: true
 
@@ -45,6 +42,8 @@ five:
   description: MyText5
   start_date: 2015-08-17
   duration: 1
-  end_date: 2015-08-17
   deleted: true
   published: true
+
+six:
+  name: MyString5

@@ -3,7 +3,7 @@ require 'test_helper'
 class GroupEventsControllerTest < ActionController::TestCase
   setup do
     @group_event = group_events(:one)
-    @group_event_not_filled = group_events(:three)
+    @group_event_not_filled = group_events(:six)
   end
 
   test 'should get index' do

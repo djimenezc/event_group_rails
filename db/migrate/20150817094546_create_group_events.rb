@@ -6,7 +6,6 @@ class CreateGroupEvents < ActiveRecord::Migration
       t.text :description
       t.date :start_date
       t.integer :duration
-      t.date :end_date
       t.boolean :deleted
       t.boolean :published
 

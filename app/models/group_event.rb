@@ -1,6 +1,6 @@
 class GroupEvent < ActiveRecord::Base
 
-  validates :name, :location, :description, :start_date, :end_date, :duration, :published, presence: true, :on => :update, :if => :just_published?
+  validates :name, :location, :description, :start_date, :duration, :published, presence: true, :on => :update, :if => :just_published?
 
   before_save :default_values
 
@@ -16,6 +16,13 @@ class GroupEvent < ActiveRecord::Base
 
   def just_published?
     changed.include?('published') && published?
+  end
+
+  def end_date
+
+    if !self.start_date.nil? && !self.duration.nil?
+      self.start_date + self.duration
+    end
   end
 
 end

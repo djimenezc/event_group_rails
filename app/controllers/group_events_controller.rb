@@ -4,7 +4,6 @@ class GroupEventsController < ApplicationController
   # GET /group_events
   # GET /group_events.json
   def index
-    # @group_events = GroupEvent.all
     @group_events = GroupEvent.where :deleted => false
   end
 
