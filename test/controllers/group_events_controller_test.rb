@@ -58,6 +58,13 @@ class GroupEventsControllerTest < ActionController::TestCase
     assert records['name'] == 'nameChanged'
   end
 
+  test 'should update group_event incorrect field' do
+    patch :update, id: @group_event, group_event: {:name1 => 'nameChanged'}, :format => :json
+
+    assert response.status == 200
+
+  end
+
   test 'should update group_event html' do
     patch :update, id: @group_event, group_event: {:name => 'nameChanged'}
     assert_redirected_to group_event_path(assigns(:group_event))
