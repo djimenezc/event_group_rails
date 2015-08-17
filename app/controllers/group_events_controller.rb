@@ -74,22 +74,31 @@ class GroupEventsController < ApplicationController
   def publish
 
     @group_event.published = true
-    @group_event.save!
 
-    respond_to do |format|
-      format.html { redirect_to group_events_url, notice: 'Group event was successfully published.' }
-      format.json { head :no_content }
+    begin
+      @group_event.save!
+    rescue Exception => ex
+      respond_to do |format|
+        format.json { render :json => {:errors => @group_event.errors.full_messages}, :status => 422 }
+        format.html { redirect_to group_events_url, notice: ex.message }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to group_events_url, notice: 'Group event was successfully published.' }
+        format.json { head :no_content }
+      end
     end
+
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_group_event
-      @group_event = GroupEvent.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_group_event
+    @group_event = GroupEvent.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def group_event_params
-      params.require(:group_event).permit(:name, :location, :description, :start_date, :duration, :deleted, :published)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def group_event_params
+    params.require(:group_event).permit(:name, :location, :description, :start_date, :duration, :deleted, :published)
+  end
 end

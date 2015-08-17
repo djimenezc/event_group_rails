@@ -18,15 +18,15 @@ two:
   duration: 1
   end_date: 2015-08-17
   deleted: false
-  published: false
+  published: true
 three:
   name: MyString3
   location: MyString3
-  description: MyText2
+#  description: MyText2
   start_date: 2015-08-17
   duration: 1
   end_date: 2015-08-17
-  deleted: true
+  deleted: false
   published: false
 
 four:

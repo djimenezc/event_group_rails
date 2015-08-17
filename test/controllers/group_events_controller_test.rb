@@ -3,6 +3,7 @@ require 'test_helper'
 class GroupEventsControllerTest < ActionController::TestCase
   setup do
     @group_event = group_events(:one)
+    @group_event_not_filled = group_events(:three)
   end
 
   test 'should get index' do
@@ -12,7 +13,7 @@ class GroupEventsControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_not_nil assigns(:group_events)
-    assert records.length == 2
+    assert records.length == 3
   end
 
   test 'should get new' do
@@ -62,12 +63,36 @@ class GroupEventsControllerTest < ActionController::TestCase
 
     assert !@group_event.published
 
+    get :publish, id: @group_event, :format => :json
+
+    assert response.status == 204
+
+    group_event_updated = GroupEvent.where :name => 'MyString1'
+    assert group_event_updated[0].published, 'Record not published properly'
+  end
+
+  test 'should publish group_event html' do
+
+    assert !@group_event.published
+
     get :publish, id: @group_event
 
     group_event_updated = GroupEvent.where :name => 'MyString1'
     assert group_event_updated[0].published, 'Record not published properly'
 
     assert_redirected_to group_events_path
+  end
+
+  test 'should not publish group_event, all fields are required' do
+
+    assert !@group_event_not_filled.published
+
+    get :publish, id: @group_event_not_filled, :format => :json
+
+    assert response.status == 422
+
+    records = JSON.parse(response.body)
+    assert records.include? 'errors'
   end
 
 end
