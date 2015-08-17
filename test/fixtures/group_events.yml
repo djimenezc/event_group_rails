@@ -1,21 +1,50 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  location: MyString
-  description: MyText
+  name: MyString1
+  location: MyString1
+  description: MyText1
   start_date: 2015-08-17
   duration: 1
   end_date: 2015-08-17
-  delete: false
+  deleted: false
   published: false
 
 two:
-  name: MyString
-  location: MyString
-  description: MyText
+  name: MyString2
+  location: MyString2
+  description: MyText2
   start_date: 2015-08-17
   duration: 1
   end_date: 2015-08-17
-  delete: false
+  deleted: false
   published: false
+three:
+  name: MyString3
+  location: MyString3
+  description: MyText2
+  start_date: 2015-08-17
+  duration: 1
+  end_date: 2015-08-17
+  deleted: true
+  published: false
+
+four:
+  name: MyString4
+  location: MyString4
+  description: MyText5
+  start_date: 2015-08-17
+  duration: 1
+  end_date: 2015-08-17
+  deleted: true
+  published: true
+
+five:
+  name: MyString5
+  location: MyString5
+  description: MyText5
+  start_date: 2015-08-17
+  duration: 1
+  end_date: 2015-08-17
+  deleted: true
+  published: true
