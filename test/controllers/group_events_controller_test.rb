@@ -17,8 +17,8 @@ class GroupEventsControllerTest < ActionController::TestCase
   end
 
   test 'should create group_event' do
-    assert_difference('GroupEvent.count') do
-      post :create, group_event: {}
+    assert_difference('GroupEvent.count', 1) do
+      post :create, group_event: {:name => 'hello'}
     end
 
     assert_redirected_to group_event_path(assigns(:group_event))
