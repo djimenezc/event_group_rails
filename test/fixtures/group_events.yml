@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  location: MyString
+  description: MyText
+  start_date: 2015-08-17
+  duration: 1
+  end_date: 2015-08-17
+  delete: false
+  published: false
+
+two:
+  name: MyString
+  location: MyString
+  description: MyText
+  start_date: 2015-08-17
+  duration: 1
+  end_date: 2015-08-17
+  delete: false
+  published: false
